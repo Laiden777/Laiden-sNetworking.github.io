@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetLearn - Virtual Networking Classroom</title>
+    <style>
+        :root {
+            --primary: #3498db;
+            --secondary: #2980b9;
+            --accent: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --success: #27ae60;
+            --danger: #e74c3c;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-icon {
+            margin-right: 0.5rem;
+        }
+        
+        .nav-links {
+            display: flex;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            padding: 0.5rem;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #e67e22;
+        }
+        
+        .module-card, .quiz-card, .topic-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .module-card:hover, .quiz-card:hover, .topic-card:hover {
+            transform: translateY(-3px);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .notes-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 1.5rem;
+        }
+        
+        .notes-list {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1rem;
+            height: 500px;
+            overflow-y: auto;
+        }
+        
+        .note-item {
+            padding: 0.8rem;
+            margin-bottom: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .note-item:hover {
+            background-color: #f0f0f0;
+        }
+        
+        .note-item.active {
+            background-color: #e3f2fd;
+            font-weight: bold;
+        }
+        
+        .note-editor {
+            background-color: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .note-title {
+            padding: 0.8rem;
+            font-size: 1.2rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+        }
+        
+        .note-content {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            resize: none;
+        }
+        
+        .chat-container {
+            background-color: white;
+            border-radius: 8px;
+            height: 500px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px 8px 0 0;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            padding: 1rem;
+            overflow-y: auto;
+        }
+        
+        .message {
+            margin-bottom: 1rem;
+        }
+        
+        .message.ai {
+            text-align: left;
+        }
+        
+        .message.user {
+            text-align: right;
+        }
+        
+        .message-content {
+            display: inline-block;
+            padding: 0.8rem 1.2rem;
+            border-radius: 18px;
+            max-width: 80%;
+        }
+        
+        .message.ai .message-content {
+            background-color: #f0f0f0;
+        }
+        
+        .message.user .message-content {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .chat-input-container {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+        }
+        
+        .chat-send {
+            padding: 0 1.5rem;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+        
+        @media (max-width: 768px) {
+            .notes-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                <span class="logo-icon">🌐</span>
+                NetLearn
+            </div>
+            <div class="nav-links">
+                <a href="#learn" class="nav-link" data-tab="learn">Learn</a>
+                <a href="#quiz" class="nav-link" data-tab="quiz">Tests & Quizzes</a>
+                <a href="#notes" class="nav-link" data-tab="notes">My Notes</a>
+                <a href="#chat" class="nav-link" data-tab="chat">AI Assistant</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="container">
+        <!-- Learn Tab Content -->
+        <div id="learn" class="tab-content active">
+            <h2>Learning Modules</h2>
+            <div class="topic-card" data-topic="osi-model">
+                <h3>OSI Model</h3>
+                <p>Learn about the 7-layer OSI model and how network communication works</p>
+            </div>
+            <div class="topic-card" data-topic="tcp-ip">
+                <h3>TCP/IP Protocol Suite</h3>
+                <p>Understand the foundational protocols of the internet</p>
+            </div>
+            <div class="topic-card" data-topic="subnetting">
+                <h3>IP Addressing & Subnetting</h3>
+                <p>Master IP addressing, subnet masks, and CIDR notation</p>
+            </div>
+            <div class="topic-card" data-topic="routing">
+                <h3>Routing Protocols</h3>
+                <p>Learn how routers direct traffic across networks</p>
+            </div>
+        </div>
+        
+        <!-- Quiz Tab Content -->
+        <div id="quiz" class="tab-content">
+            <h2>Tests & Quizzes</h2>
+            <div class="quiz-card">
+                <h3>Network Fundamentals Quiz</h3>
+                <p>Test your understanding of basic networking concepts</p>
+                <a href="#" class="btn">Start Quiz</a>
+            </div>
+            <div class="quiz-card">
+                <h3>IP Addressing Challenge</h3>
+                <p>Practice subnetting and IP address calculations</p>
+                <a href="#" class="btn">Start Quiz</a>
+            </div>
+        </div>
+        
+        <!-- Notes Tab Content -->
+        <div id="notes" class="tab-content">
+            <h2>My Notes</h2>
+            <div class="notes-container">
+                <div class="notes-list">
+                    <div class="note-item active">OSI Model Notes</div>
+                    <div class="note-item">TCP/IP Notes</div>
+                    <div class="note-item">Subnetting Cheat Sheet</div>
+                    <button id="new-note" class="btn" style="width: 100%; margin-top: 1rem;">+ New Note</button>
+                </div>
+                <div class="note-editor">
+                    <input type="text" class="note-title" value="OSI Model Notes" placeholder="Note title">
+                    <textarea class="note-content" placeholder="Write your notes here...">The OSI (Open Systems Interconnection) model is a conceptual framework that characterizes and standardizes the communication functions of a telecommunication or computing system without regard to its underlying internal structure and technology.
+
+Layers:
+1. Physical - Cables, signals
+2. Data Link - MAC addresses
+3. Network - IP addresses
+4. Transport - TCP/UDP
+5. Session - Connections
+6. Presentation - Encryption
+7. Application - HTTP, FTP</textarea>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Chat Tab Content -->
+        <div id="chat" class="tab-content">
+            <h2>AI Networking Assistant</h2>
+            <div class="chat-container">
+                <div class="chat-header">
+                    NetLearn AI Assistant
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                    <div class="message ai">
+                        <div class="message-content">
+                            Hello! I'm your NetLearn AI assistant. Ask me anything about computer networking, and I'll do my best to explain it clearly. You can also click on topics in the Learn section to automatically ask me about them.
+                        </div>
+                    </div>
+                </div>
+                <div class="chat-input-container">
+                    <input type="text" class="chat-input" id="chat-input" placeholder="Ask about networking...">
+                    <button class="chat-send" id="chat-send">Send</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <div>
+            <p>&copy; 2023 NetLearn Virtual Classroom. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Tab Navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab switching functionality
+            const navLinks = document.querySelectorAll('.nav-link');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            function showTab(tabId) {
+                tabContents.forEach(content => {
+                    content.classList.remove('active');
+                });
+                
+                const activeTab = document.getElementById(tabId);
+                if (activeTab) {
+                    activeTab.classList.add('active');
+                }
+            }
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const tabId = this.getAttribute('data-tab');
+                    showTab(tabId);
+                    window.location.hash = tabId;
+                });
+            });
+            
+            // Check URL hash on load
+            function checkInitialTab() {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    showTab(hash);
+                } else {
+                    showTab('learn');
+                }
+            }
+            
+            checkInitialTab();
+            
+            // Handle back/forward navigation
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.substring(1);
+                if (hash && document.getElementById(hash)) {
+                    showTab(hash);
+                }
+            });
+            
+            // Notes functionality
+            const noteItems = document.querySelectorAll('.note-item');
+            const noteTitle = document.querySelector('.note-title');
+            const noteContent = document.querySelector('.note-content');
+            const newNoteBtn = document.getElementById('new-note');
+            
+            noteItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    noteItems.forEach(note => note.classList.remove('active'));
+                    this.classList.add('active');
+                    noteTitle.value = this.textContent;
+                    // In a real app, you would load the note content here
+                });
+            });
+            
+            newNoteBtn.addEventListener('click', function() {
+                const noteName = prompt('Enter a name for your new note:');
+                if (noteName) {
+                    const newNote = document.createElement('div');
+                    newNote.className = 'note-item';
+                    newNote.textContent = noteName;
+                    document.querySelector('.notes-list').insertBefore(newNote, newNoteBtn);
+                    newNote.click();
+                    noteTitle.value = noteName;
+                    noteContent.value = '';
+                }
+            });
+            
+            // AI Chat functionality
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const chatSend = document.getElementById('chat-send');
+            
+            function addMessage(text, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.className = `message ${isUser ? 'user' : 'ai'}`;
+                
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'message-content';
+                contentDiv.textContent = text;
+                
+                messageDiv.appendChild(contentDiv);
+                chatMessages.appendChild(messageDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function handleAIResponse(question) {
+                // AI knowledge base
+                const knowledge = {
+                    'osi-model': `The OSI (Open Systems Interconnection) model is a conceptual framework that divides network communications into seven layers:
+                    
+                    1. Physical Layer: Deals with the physical connection between devices. Includes cables, switches, and the electrical signals themselves.
+                    
+                    2. Data Link Layer: Provides node-to-node transfer and handles error detection. Ethernet and MAC addresses operate here.
+                    
+                    3. Network Layer: Handles packet routing across networks. IP addresses and routers work at this layer.
+                    
+                    4. Transport Layer: Ensures complete data transfer. TCP (reliable) and UDP (fast) are transport protocols.
+                    
+                    5. Session Layer: Manages connections between applications.
+                    
+                    6. Presentation Layer: Translates data between applications and the network (encryption, compression).
+                    
+                    7. Application Layer: The interface for user applications (HTTP, FTP, SMTP).
+                    
+                    Remember: "Please Do Not Throw Sausage Pizza Away" (Physical, Data Link, Network, Transport, Session, Presentation, Application).`,
+                    
+                    'tcp-ip': `The TCP/IP model is the practical implementation used for internet communications. It has four layers:
+                    
+                    1. Network Interface Layer (Physical + Data Link): Combines OSI layers 1-2. Handles physical connections and local addressing.
+                    
+                    2. Internet Layer (Network): Corresponds to OSI layer 3. IP (Internet Protocol) operates here for logical addressing.
+                    
+                    3. Transport Layer: Same as OSI layer 4. TCP provides reliable connections, while UDP is faster but unreliable.
+                    
+                    4. Application Layer (Session + Presentation + Application): Combines OSI layers 5-7. Includes protocols like HTTP, FTP, DNS, and SMTP.
+                    
+                    Key protocols: IP, TCP, UDP, HTTP, FTP, SSH, DNS, DHCP.`,
+                    
+                    'subnetting': `Subnetting allows you to divide a network into smaller subnetworks. Key concepts:
+                    
+                    - IP Address: 32-bit number (IPv4) divided into network and host portions
+                    - Subnet Mask: Determines which part is network vs host
+                    - CIDR Notation: Like 192.168.1.0/24 where /24 is the subnet mask
+                    
+                    Example: 192.168.1.0/24 means:
+                    - Network: 192.168.1.0
+                    - Usable hosts: 192.168.1.1 to 192.168.1.254
+                    - Broadcast: 192.168.1.255
+                    
+                    Subnetting helps with:
+                    - Efficient IP address allocation
+                    - Reduced network congestion
+                    - Improved security`,
+                    
+                    'routing': `Routing protocols determine how data travels across networks:
+                    
+                    1. Static Routing: Manually configured paths
+                    2. Dynamic Routing: Automatic path selection using:
+                       - RIP (Routing Information Protocol)
+                       - OSPF (Open Shortest Path First)
+                       - BGP (Border Gateway Protocol)
+                    
+                    Routers:
+                    - Maintain routing tables
+                    - Use metrics to determine best paths
+                    - Can route between different network types
+                    
+                    Key concepts:
+                    - Autonomous Systems (AS)
+                    - Interior vs Exterior Gateway Protocols
+                    - Convergence time`
+                };
+                
+                // Check if it's a predefined topic
+                if (knowledge[question]) {
+                    addMessage(knowledge[question], false);
+                } else {
+                    // Generic response for other questions
+                    const responses = [
+                        "That's an interesting networking question. Could you provide more details?",
+                        "I'd be happy to explain that networking concept. What specifically would you like to know?",
+                        "That topic is important in networking. Here's what you should know...",
+                        "In computer networks, that concept relates to..."
+                    ];
+                    addMessage(responses[Math.floor(Math.random() * responses.length)], false);
+                }
+            }
+            
+            // Handle topic clicks (from Learn section)
+            document.querySelectorAll('.topic-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const topic = this.getAttribute('data-topic');
+                    showTab('chat');
+                    window.location.hash = 'chat';
+                    
+                    // Add user message
+                    const topicNames = {
+                        'osi-model': 'OSI Model',
+                        'tcp-ip': 'TCP/IP Protocol Suite',
+                        'subnetting': 'IP Addressing & Subnetting',
+                        'routing': 'Routing Protocols'
+                    };
+                    
+                    const question = `Explain ${topicNames[topic]}`;
+                    addMessage(question, true);
+                    chatInput.value = '';
+                    
+                    // Simulate AI typing
+                    setTimeout(() => {
+                        handleAIResponse(topic);
+                    }, 800);
+                });
+            });
+            
+            // Handle chat input
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (message) {
+                    addMessage(message, true);
+                    chatInput.value = '';
+                    
+                    // Simulate AI typing
+                    setTimeout(() => {
+                        handleAIResponse(message.toLowerCase());
+                    }, 1000);
+                }
+            }
+            
+            chatSend.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
