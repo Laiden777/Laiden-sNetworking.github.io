@@ -1,0 +1,2671 @@
+                            <li><strong>Subnet 2:</strong> 192.168.1.64/26 (Host range: 192.168.1.65 - 192.168.1.126, Broadcast: 192.168.1.127)</li>
+                            <li><strong>Subnet 3:</strong> 192.168.1.128/26 (Host range: 192.168.1.129 - 192.168.1.190, Broadcast: 192.168.1.191)</li>
+                            <li><strong>Subnet 4:</strong> 192.168.1.192/26 (Host range: 192.168.1.193 - 192.168.1.254, Broadcast: 192.168.1.255)</li>
+                        </ul>
+                        <p><strong>Step 4:</strong> Each subnet can have 62 hosts (2<sup>6</sup> - 2 = 62).</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>CIDR (Classless Inter-Domain Routing)</h2>
+                        <p>CIDR is a method of IP address allocation that replaced the traditional class-based addressing system. It allows for more flexible allocation of IP addresses and helps conserve address space.</p>
+                        
+                        <h3>CIDR Notation</h3>
+                        <p>CIDR notation uses a suffix indicating the number of bits in the network portion of the address:</p>
+                        <ul>
+                            <li>192.168.1.0/24 means the first 24 bits identify the network</li>
+                            <li>10.0.0.0/8 means the first 8 bits identify the network</li>
+                            <li>172.16.0.0/16 means the first 16 bits identify the network</li>
+                        </ul>
+                        
+                        <h3>Benefits of CIDR</h3>
+                        <ul>
+                            <li>More efficient use of IP address space</li>
+                            <li>Reduced routing table size in Internet routers</li>
+                            <li>More granular control over network sizes</li>
+                            <li>Ability to allocate addresses based on actual need rather than predefined classes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>VLSM (Variable Length Subnet Masks)</h2>
+                        <p>VLSM is an extension of subnetting that allows network administrators to use different subnet masks for different subnets within the same network address space.</p>
+                        
+                        <h3>Why Use VLSM?</h3>
+                        <p>With VLSM, you can create subnets of various sizes, which allows for:</p>
+                        <ul>
+                            <li>More efficient use of IP addresses</li>
+                            <li>Right-sizing subnets based on actual needs</li>
+                            <li>Hierarchical network design</li>
+                        </ul>
+                        
+                        <h3>VLSM Example</h3>
+                        <p>Suppose you have a network 192.168.10.0/24 and need:</p>
+                        <ul>
+                            <li>One subnet with 100 hosts</li>
+                            <li>Two subnets with 40 hosts each</li>
+                            <li>Four subnets with 10 hosts each</li>
+                        </ul>
+                        
+                        <p>Using VLSM:</p>
+                        <ol>
+                            <li>For 100 hosts, you need 7 host bits (2<sup>7</sup> - 2 = 126 hosts), so use a /25 mask:
+                                <ul><li>192.168.10.0/25 (Hosts: 192.168.10.1 - 192.168.10.126)</li></ul>
+                            </li>
+                            <li>For 40 hosts, you need 6 host bits (2<sup>6</sup> - 2 = 62 hosts), so use a /26 mask:
+                                <ul>
+                                <li>192.168.10.128/26 (Hosts: 192.168.10.129 - 192.168.10.190)</li>
+                                <li>192.168.10.192/26 (Hosts: 192.168.10.193 - 192.168.10.254)</li>
+                                </ul>
+                            </li>
+                        </ol>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Subnetting IPv6</h2>
+                        <p>IPv6 uses a 128-bit address space, vastly larger than IPv4's 32-bit space. This eliminates the need for address conservation techniques like NAT, but subnetting is still important for network organization.</p>
+                        
+                        <h3>IPv6 Subnetting Basics</h3>
+                        <ul>
+                            <li>The standard IPv6 subnet is /64 (half the bits for network, half for hosts)</li>
+                            <li>A typical site receives a /48 prefix, allowing for 65,536 subnets</li>
+                            <li>Subnetting in IPv6 is much simpler because address conservation is not a primary concern</li>
+                            <li>IPv6 addresses are written in hexadecimal notation with colons (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334)</li>
+                        </ul>
+                    </div>
+                `,
+                quiz: [
+                    {
+                        question: "In the subnet mask 255.255.255.192, how many bits are used for the subnet?",
+                        options: [
+                            "24 bits",
+                            "26 bits",
+                            "28 bits",
+                            "30 bits"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "How many usable host addresses are available in a /27 network?",
+                        options: [
+                            "30",
+                            "32",
+                            "62",
+                            "126"
+                        ],
+                        answer: 0
+                    },
+                    {
+                        question: "What is the broadcast address for the subnet 192.168.1.64/26?",
+                        options: [
+                            "192.168.1.95",
+                            "192.168.1.127",
+                            "192.168.1.64",
+                            "192.168.1.255"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "VLSM allows network administrators to:",
+                        options: [
+                            "Use only Class A networks",
+                            "Use the same subnet mask for all subnets",
+                            "Use different subnet masks for different subnets in the same network",
+                            "Avoid using subnet masks entirely"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "What is the primary advantage of CIDR over traditional classful addressing?",
+                        options: [
+                            "It eliminates the need for subnetting",
+                            "It provides more flexibility in allocating IP addresses",
+                            "It increases the total number of available IP addresses",
+                            "It makes IP addresses easier to remember"
+                        ],
+                        answer: 1
+                    }
+                ]
+            },
+            'network-security': {
+                title: 'Network Security',
+                icon: 'fas fa-shield-alt',
+                content: `
+                    <div class="content-section">
+                        <h2>Introduction to Network Security</h2>
+                        <p>Network security encompasses the policies, practices, and technologies designed to protect the integrity, confidentiality, and accessibility of computer networks and data. As networks become increasingly complex and threats more sophisticated, robust security measures are essential for organizations of all sizes.</p>
+                        
+                        <p>The primary goals of network security are:</p>
+                        <ul>
+                            <li><strong>Confidentiality:</strong> Ensuring that sensitive information is accessible only to authorized parties</li>
+                            <li><strong>Integrity:</strong> Maintaining and assuring the accuracy and consistency of data</li>
+                            <li><strong>Availability:</strong> Ensuring that systems and data are available when needed</li>
+                            <li><strong>Authentication:</strong> Verifying the identity of users and systems</li>
+                            <li><strong>Authorization:</strong> Determining what resources authenticated users can access</li>
+                            <li><strong>Non-repudiation:</strong> Preventing users from denying their actions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Common Network Threats</h2>
+                        
+                        <h3>Malware</h3>
+                        <p>Malicious software designed to damage or gain unauthorized access to systems:</p>
+                        <ul>
+                            <li><strong>Viruses:</strong> Self-replicating programs that attach to legitimate files</li>
+                            <li><strong>Worms:</strong> Self-replicating programs that spread independently</li>
+                            <li><strong>Trojans:</strong> Malware disguised as legitimate software</li>
+                            <li><strong>Ransomware:</strong> Encrypts data and demands payment for decryption</li>
+                            <li><strong>Spyware:</strong> Gathers information without consent</li>
+                            <li><strong>Rootkits:</strong> Provides persistent privileged access while hiding itself</li>
+                        </ul>
+                        
+                        <h3>Network Attacks</h3>
+                        <ul>
+                            <li><strong>Denial of Service (DoS):</strong> Overwhelms resources to make services unavailable</li>
+                            <li><strong>Distributed Denial of Service (DDoS):</strong> DoS attack from multiple sources</li>
+                            <li><strong>Man-in-the-Middle (MitM):</strong> Intercepts and potentially alters communications</li>
+                            <li><strong>ARP Spoofing:</strong> Links attacker's MAC address with legitimate IP address</li>
+                            <li><strong>DNS Poisoning:</strong> Corrupts DNS cache to redirect traffic</li>
+                            <li><strong>Port Scanning:</strong> Probes for open ports to find vulnerabilities</li>
+                            <li><strong>Packet Sniffing:</strong> Captures and analyzes network traffic</li>
+                        </ul>
+                        
+                        <h3>Social Engineering</h3>
+                        <ul>
+                            <li><strong>Phishing:</strong> Deceptive attempts to obtain sensitive information</li>
+                            <li><strong>Spear Phishing:</strong> Targeted phishing attacks against specific individuals</li>
+                            <li><strong>Pretexting:</strong> Creating a fabricated scenario to obtain information</li>
+                            <li><strong>Baiting:</strong> Offering something enticing to entrap the victim</li>
+                            <li><strong>Tailgating:</strong> Following someone into a restricted area</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Network Security Technologies and Solutions</h2>
+                        
+                        <h3>Firewalls</h3>
+                        <p>Firewalls monitor and filter incoming and outgoing network traffic based on predetermined security rules:</p>
+                        <ul>
+                            <li><strong>Packet Filtering:</strong> Examines packets and prevents/allows them based on rules</li>
+                            <li><strong>Stateful Inspection:</strong> Tracks the state of network connections</li>
+                            <li><strong>Application Layer:</strong> Works at the application level to identify and block malicious traffic</li>
+                            <li><strong>Next-Generation Firewalls (NGFW):</strong> Combines traditional firewall with advanced features like IPS, deep packet inspection</li>
+                        </ul>
+                        
+                        <h3>Intrusion Detection and Prevention Systems (IDS/IPS)</h3>
+                        <ul>
+                            <li><strong>IDS:</strong> Monitors network traffic for suspicious activity and issues alerts</li>
+                            <li><strong>IPS:</strong> Monitors network traffic and takes actions to prevent/block detected threats</li>
+                            <li><strong>Network-based (NIDS/NIPS):</strong> Monitors traffic on entire network segments</li>
+                            <li><strong>Host-based (HIDS/HIPS):</strong> Monitors traffic and activities on a specific host</li>
+                        </ul>
+                        
+                        <h3>VPN (Virtual Private Network)</h3>
+                        <p>Creates a secure, encrypted connection over a less secure network (like the internet):</p>
+                        <ul>
+                            <li><strong>Site-to-Site VPN:</strong> Connects entire networks to each other</li>
+                            <li><strong>Remote Access VPN:</strong> Connects individual users to a network</li>
+                            <li><strong>SSL VPN:</strong> Uses SSL/TLS for secure web-based access</li>
+                            <li><strong>IPsec VPN:</strong> Uses Internet Protocol Security for secure communication</li>
+                        </ul>
+                        
+                        <h3>Encryption</h3>
+                        <p>Converts data into coded text to prevent unauthorized access:</p>
+                        <ul>
+                            <li><strong>Symmetric Encryption:</strong> Uses a single key for both encryption and decryption (e.g., AES, DES)</li>
+                            <li><strong>Asymmetric Encryption:</strong> Uses public and private key pairs (e.g., RSA, ECC)</li>
+                            <li><strong>Hashing:</strong> Creates fixed-length strings from input data (e.g., SHA, MD5)</li>
+                            <li><strong>PKI (Public Key Infrastructure):</strong> Framework for managing digital certificates and public-key encryption</li>
+                        </ul>
+                        
+                        <h3>Access Control</h3>
+                        <ul>
+                            <li><strong>Authentication:</strong> Verifying identity (passwords, biometrics, tokens)</li>
+                            <li><strong>Authorization:</strong> Determining access rights after authentication</li>
+                            <li><strong>Accounting:</strong> Tracking user activities and resource usage</li>
+                            <li><strong>RADIUS/TACACS+:</strong> Network protocols for centralized AAA management</li>
+                            <li><strong>MFA (Multi-Factor Authentication):</strong> Requires two or more verification factors</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Network Security Best Practices</h2>
+                        
+                        <h3>Defense in Depth</h3>
+                        <p>Implementing multiple layers of security controls throughout the network:</p>
+                        <ul>
+                            <li>Perimeter security (firewalls, IPS)</li>
+                            <li>Network segmentation</li>
+                            <li>Host-based security</li>
+                            <li>Application security</li>
+                            <li>Data security</li>
+                        </ul>
+                        
+                        <h3>Network Segmentation</h3>
+                        <p>Dividing the network into isolated segments to limit the spread of attacks:</p>
+                        <ul>
+                            <li><strong>VLANs (Virtual LANs):</strong> Logical separation of networks</li>
+                            <li><strong>DMZ (Demilitarized Zone):</strong> Buffer zone between internet and internal network</li>
+                            <li><strong>Zero Trust Architecture:</strong> "Never trust, always verify" - verifies each request regardless of source</li>
+                        </ul>
+                        
+                        <h3>Patch Management</h3>
+                        <p>Systematically applying updates to address security vulnerabilities:</p>
+                        <ul>
+                            <li>Regular updates for all systems and applications</li>
+                            <li>Automated patch management systems</li>
+                            <li>Testing before deployment</li>
+                            <li>Vulnerability management process</li>
+                        </ul>
+                        
+                        <h3>Security Monitoring and Incident Response</h3>
+                        <ul>
+                            <li><strong>SIEM (Security Information and Event Management):</strong> Collects and analyzes security event data</li>
+                            <li><strong>SOC (Security Operations Center):</strong> Team responsible for monitoring and responding to security incidents</li>
+                            <li><strong>IR Plan:</strong> Documented procedures for handling security incidents</li>
+                            <li><strong>Threat Hunting:</strong> Proactively searching for threats within the network</li>
+                        </ul>
+                        
+                        <h3>Regular Security Assessments</h3>
+                        <ul>
+                            <li><strong>Vulnerability Assessments:</strong> Identify, classify, and prioritize vulnerabilities</li>
+                            <li><strong>Penetration Testing:</strong> Simulated attacks to identify exploitable vulnerabilities</li>
+                            <li><strong>Security Audits:</strong> Systematic evaluations of security controls</li>
+                            <li><strong>Risk Assessments:</strong> Identify and evaluate potential risks to the organization</li>
+                        </ul>
+                    </div>
+                `,
+                quiz: [
+                    {
+                        question: "Which of the following is NOT one of the primary goals of network security?",
+                        options: [
+                            "Confidentiality",
+                            "Integrity",
+                            "Redundancy",
+                            "Availability"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "Which type of attack involves overwhelming network resources to make services unavailable?",
+                        options: [
+                            "Man-in-the-Middle",
+                            "Denial of Service",
+                            "Phishing",
+                            "ARP Spoofing"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "Which security technology monitors network traffic for suspicious activity and takes action to prevent threats?",
+                        options: [
+                            "Firewall",
+                            "VPN",
+                            "Intrusion Prevention System",
+                            "Encryption"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "What is a DMZ in network security?",
+                        options: [
+                            "A type of encryption algorithm",
+                            "A buffer zone between the internet and internal network",
+                            "A type of access control method",
+                            "A virus detection technique"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "Which encryption type uses a pair of public and private keys?",
+                        options: [
+                            "Symmetric encryption",
+                            "Asymmetric encryption",
+                            "Hashing",
+                            "Block cipher"
+                        ],
+                        answer: 1
+                    }
+                ]
+            },
+            'wireless-networks': {
+                title: 'Wireless Networks',
+                icon: 'fas fa-wifi',
+                content: `
+                    <div class="content-section">
+                        <h2>Introduction to Wireless Networks</h2>
+                        <p>Wireless networks enable devices to connect and communicate without physical cables, providing mobility and flexibility in network design. From Wi-Fi networks in homes and businesses to cellular networks spanning the globe, wireless technologies have revolutionized how we connect.</p>
+                        
+                        <p>Wireless networks use radio waves or other electromagnetic signals to transmit data, with different technologies optimized for various ranges, data rates, and use cases.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Types of Wireless Networks</h2>
+                        
+                        <h3>Wireless Personal Area Networks (WPAN)</h3>
+                        <p>Short-range networks for connecting personal devices:</p>
+                        <ul>
+                            <li><strong>Bluetooth:</strong> Short-range communication (10-100 meters) with low power consumption</li>
+                            <li><strong>Zigbee:</strong> Low-power, low-data-rate communication for IoT devices</li>
+                            <li><strong>NFC (Near Field Communication):</strong> Very short-range (few centimeters) for secure transactions</li>
+                        </ul>
+                        
+                        <h3>Wireless Local Area Networks (WLAN)</h3>
+                        <p>Networks covering a small area like a home, office, or campus:</p>
+                        <ul>
+                            <li><strong>Wi-Fi (IEEE 802.11):</strong> The most common WLAN technology</li>
+                            <li>Typically covers tens to hundreds of meters</li>
+                            <li>Connects to wired networks via access points</li>
+                        </ul>
+                        
+                        <h3>Wireless Metropolitan Area Networks (WMAN)</h3>
+                        <p>Networks covering a city or large campus:</p>
+                        <ul>
+                            <li><strong>WiMAX (IEEE 802.16):</strong> Provides broadband wireless access over long distances</li>
+                            <li>Can cover several kilometers</li>
+                            <li>Often used for "last mile" connectivity</li>
+                        </ul>
+                        
+                        <h3>Wireless Wide Area Networks (WWAN)</h3>
+                        <p>Networks covering large geographic areas:</p>
+                        <ul>
+                            <li><strong>Cellular networks:</strong> 3G, 4G LTE, 5G</li>
+                            <li><strong>Satellite communication:</strong> Global coverage including remote areas</li>
+                            <li>Managed by telecommunications providers</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Wi-Fi Standards and Technologies</h2>
+                        
+                        <h3>IEEE 802.11 Standards</h3>
+                        <p>Wi-Fi is based on the IEEE 802.11 family of standards:</p>
+                        <ul>
+                            <li><strong>802.11a:</strong> 5 GHz band, up to 54 Mbps</li>
+                            <li><strong>802.11b:</strong> 2.4 GHz band, up to 11 Mbps</li>
+                            <li><strong>802.11g:</strong> 2.4 GHz band, up to 54 Mbps</li>
+                            <li><strong>802.11n (Wi-Fi 4):</strong> 2.4/5 GHz bands, up to 600 Mbps, MIMO technology</li>
+                            <li><strong>802.11ac (Wi-Fi 5):</strong> 5 GHz band, up to 3.5 Gbps, MU-MIMO</li>
+                            <li><strong>802.11ax (Wi-Fi 6):</strong> 2.4/5/6 GHz bands, up to 9.6 Gbps, improved efficiency in dense environments</li>
+                            <li><strong>802.11ax (Wi-Fi 6E):</strong> Extends to 6 GHz band</li>
+                            <li><strong>802.11be (Wi-Fi 7):</strong> Future standard, promising higher throughput and lower latency</li>
+                        </ul>
+                        
+                        <h3>Wi-Fi Frequency Bands</h3>
+                        <ul>
+                            <li><strong>2.4 GHz:</strong> Longer range but more crowded, 11 channels (1-11 in US)</li>
+                            <li><strong>5 GHz:</strong> Shorter range but less interference, more channels available</li>
+                            <li><strong>6 GHz:</strong> Newest band, introduced with Wi-Fi 6E, offers even more channels</li>
+                        </ul>
+                        
+                        <h3>Key Wi-Fi Technologies</h3>
+                        <ul>
+                            <li><strong>MIMO (Multiple Input, Multiple Output):</strong> Uses multiple antennas to increase throughput</li>
+                            <li><strong>MU-MIMO (Multi-User MIMO):</strong> Allows simultaneous communication with multiple devices</li>
+                            <li><strong>Beamforming:</strong> Focuses signal in the direction of clients for better reception</li>
+                            <li><strong>OFDMA (Orthogonal Frequency Division Multiple Access):</strong> Divides channels into smaller frequency allocations for improved efficiency</li>
+                            <li><strong>BSS Coloring:</strong> Reduces interference in dense environments</li>
+                            <li><strong>TWT (Target Wake Time):</strong> Improves power efficiency for IoT devices</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Wireless Network Architecture</h2>
+                        
+                        <h3>Basic Components</h3>
+                        <ul>
+                            <li><strong>Access Points (APs):</strong> Devices that connect wireless clients to a wired network</li>
+                            <li><strong>Wireless Network Interface Cards (NICs):</strong> Hardware in client devices for wireless communication</li>
+                            <li><strong>Antennas:</strong> Convert electrical signals to radio waves and vice versa</li>
+                            <li><strong>Wireless Controllers:</strong> Centrally manage multiple access points</li>
+                        </ul>
+                        
+                        <h3>Wi-Fi Network Modes</h3>
+                        <ul>
+                            <li><strong>Infrastructure Mode:</strong> Clients connect through access points to a wired network
+                                <ul>
+                                    <li><strong>BSS (Basic Service Set):</strong> Single access point with its connected clients</li>
+                                    <li><strong>ESS (Extended Service Set):</strong> Multiple BSSs connected via a distribution system</li>
+                                </ul>
+                            </li>
+                            <li><strong>Ad-hoc Mode:</strong> Direct device-to-device connections without access points (IBSS - Independent Basic Service Set)</li>
+                            <li><strong>Mesh Networks:</strong> APs connect to each other wirelessly, extending coverage</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Wireless Network Security</h2>
+                        
+                        <h3>Wi-Fi Security Protocols</h3>
+                        <ul>
+                            <li><strong>WEP (Wired Equivalent Privacy):</strong> Early, now obsolete due to serious vulnerabilities</li>
+                            <li><strong>WPA (Wi-Fi Protected Access):</strong> Intermediate solution after WEP's weaknesses were discovered</li>
+                            <li><strong>WPA2:</strong> More secure than WPA, uses AES encryption</li>
+                            <li><strong>WPA3:</strong> Latest standard with improved security features:
+                                <ul>
+                                    <li>Stronger encryption</li>
+                                    <li>Protection against brute force attacks</li>
+                                    <li>Forward secrecy</li>
+                                    <li>Enhanced protection in public networks</li>
+                                </ul>
+                            </li>
+                        </ul>
+                        
+                        <h3>Wireless Network Threats</h3>
+                        <ul>
+                            <li><strong>Eavesdropping:</strong> Intercepting wireless transmissions</li>
+                            <li><strong>Rogue Access Points:</strong> Unauthorized APs that can intercept traffic</li>
+                            <li><strong>Evil Twin Attacks:</strong> Fake APs mimicking legitimate networks</li>
+                            <li><strong>Jamming:</strong> Deliberate interference with wireless signals</li>
+                            <li><strong>Wi-Fi Password Cracking:</strong> Attempting to discover network passwords</li>
+                            <li><strong>Man-in-the-Middle Attacks:</strong> Intercepting and possibly altering communications</li>
+                        </ul>
+                        
+                        <h3>Wireless Security Best Practices</h3>
+                        <ul>
+                            <li>Use WPA3 whenever possible, or at minimum WPA2</li>
+                            <li>Use strong, complex passwords for network access</li>
+                            <li>Enable MAC address filtering (though not foolproof)</li>
+                            <li>Disable SSID broadcasting in sensitive environments</li>
+                            <li>Keep firmware updated on all wireless devices</li>
+                            <li>Implement wireless intrusion detection/prevention systems</li>
+                            <li>Consider using a VPN for additional encryption</li>
+                            <li>Segment guest networks from internal networks</li>
+                            <li>Regularly audit for unauthorized access points</li>
+                        </ul>
+                    </div>
+                `,
+                quiz: [
+                    {
+                        question: "Which of the following is NOT a type of wireless network?",
+                        options: [
+                            "WPAN (Wireless Personal Area Network)",
+                            "WLAN (Wireless Local Area Network)",
+                            "WSON (Wireless Service Overlay Network)",
+                            "WWAN (Wireless Wide Area Network)"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "Which Wi-Fi standard operates exclusively in the 5 GHz band?",
+                        options: [
+                            "802.11b",
+                            "802.11g",
+                            "802.11ac (Wi-Fi 5)",
+                            "802.11ax (Wi-Fi 6)"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "What technology allows Wi-Fi access points to communicate with multiple devices simultaneously?",
+                        options: [
+                            "Beamforming",
+                            "MU-MIMO",
+                            "OFDMA",
+                            "BSS Coloring"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "Which of the following is the most secure Wi-Fi security protocol?",
+                        options: [
+                            "WEP",
+                            "WPA",
+                            "WPA2",
+                            "WPA3"
+                        ],
+                        answer: 3
+                    },
+                    {
+                        question: "In a Wi-Fi network, what is a Basic Service Set (BSS)?",
+                        options: [
+                            "A group of wireless devices communicating directly without an access point",
+                            "A single access point with its connected clients",
+                            "Multiple access points connected to the same network",
+                            "A security protocol for wireless networks"
+                        ],
+                        answer: 1
+                    }
+                ]
+            }
+        };
+        
+        const userNotes = {};
+        const userProgress = {
+            'osi-model': 0,
+            'tcp-ip': 0,
+            'routing': 0,
+            'subnetting': 0,
+            'network-security': 0,
+            'wireless-networks': 0
+        };
+        const quizAttempts = {};
+        
+        // DOM Elements
+        const homeLink = document.getElementById('home-link');
+        const topicsLink = document.getElementById('topics-link');
+        const notesLink = document.getElementById('notes-link');
+        const progressLink = document.getElementById('progress-link');
+        const homePage = document.getElementById('home-page');
+        const topicsPage = document.getElementById('topics-page');
+        const topicContentPage = document.getElementById('topic-content-page');
+        const notesPage = document.getElementById('notes-page');
+        const progressPage = document.getElementById('progress-page');
+        
+        const exploreBtns = document.querySelectorAll('.topic-btn');
+        const exploreTopicsBtn = document.getElementById('explore-topics-btn');
+        
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const learnTab = document.getElementById('learn-tab');
+        const quizTab = document.getElementById('quiz-tab');
+        const notesTab = document.getElementById('notes-tab');
+        const askTab = document.getElementById('ask-tab');
+        
+        const currentTopicName = document.getElementById('current-topic-name');
+        const topicTitle = document.getElementById('topic-title');
+        const topicContent = document.getElementById('topic-content');
+        const notesTopicTitle = document.getElementById('notes-topic-title');
+        const chatTopicTitle = document.getElementById('chat-topic-title');
+        
+        const notesEditor = document.getElementById('notes-editor');
+        const saveNotesBtn = document.getElementById('save-notes-btn');
+        const notesList = document.getElementById('notes-list');
+        
+        const quizContainer = document.getElementById('quiz-container');
+        const quizResult = document.getElementById('quiz-result');
+        const quizScore = document.getElementById('quiz-score');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const retryQuizBtn = document.getElementById('retry-quiz-btn');
+        
+        const userInput = document.getElementById('user-input');
+        const sendBtn = document.getElementById('send-btn');
+        const chatMessages = document.getElementById('chat-messages');
+        
+        const topicUserInput = document.getElementById('topic-user-input');
+        const topicSendBtn = document.getElementById('topic-send-btn');
+        const topicChatMessages = document.getElementById('topic-chat-messages');
+        
+        // Navigation Functions
+        function showPage(page) {
+            homePage.style.display = 'none';
+            topicsPage.style.display = 'none';
+            topicContentPage.style.display = 'none';
+            notesPage.style.display = 'none';
+            progressPage.style.display = 'none';
+            
+            page.style.display = 'block';
+            
+            // Update active link
+            homeLink.classList.remove('active');
+            topicsLink.classList.remove('active');
+            notesLink.classList.remove('active');
+            progressLink.classList.remove('active');
+            
+            if (page === homePage) {
+                homeLink.classList.add('active');
+            } else if (page === topicsPage) {
+                topicsLink.classList.add('active');
+            } else if (page === notesPage) {
+                notesLink.classList.add('active');
+            } else if (page === progressPage) {
+                progressLink.classList.add('active');
+            }
+        }
+        
+        function openTopic(topicId) {
+            const topic = topicsData[topicId];
+            if (!topic) return;
+            
+            currentTopicName.textContent = topic.title;
+            topicTitle.textContent = topic.title;
+            notesTopicTitle.textContent = topic.title;
+            chatTopicTitle.textContent = topic.title;
+            
+            // Set topic content
+            topicContent.innerHTML = topic.content;
+            
+            // Update topic-specific chat message
+            const topicSpecificNames = document.querySelectorAll('.topic-specific-name');
+            topicSpecificNames.forEach(span => {
+                span.textContent = topic.title;
+            });
+            
+            // Load notes if exist
+            if (userNotes[topicId]) {
+                notesEditor.value = userNotes[topicId];
+            } else {
+                notesEditor.value = '';
+            }
+            
+            // Setup quiz
+            setupQuiz(topicId);
+            
+            // Active first tab by default
+            showTab('learn');
+            
+            // Store current topic id
+            topicContentPage.dataset.currentTopic = topicId;
+            
+            showPage(topicContentPage);
+        }
+        
+        function showTab(tabId) {
+            const tabs = ['learn', 'quiz', 'notes', 'ask'];
+            
+            tabs.forEach(tab => {
+                const tabContent = document.getElementById(`${tab}-tab`);
+                const tabBtn = document.querySelector(`.tab-btn[data-tab="${tab}"]`);
+                
+                if (tab === tabId) {
+                    tabContent.classList.add('active');
+                    tabBtn.classList.add('active');
+                } else {
+                    tabContent.classList.remove('active');
+                    tabBtn.classList.remove('active');
+                }
+            });
+        }
+        
+        function setupQuiz(topicId) {
+            const topic = topicsData[topicId];
+            if (!topic || !topic.quiz) return;
+            
+            quizContainer.innerHTML = '';
+            quizResult.style.display = 'none';
+            
+            topic.quiz.forEach((q, index) => {
+                const questionDiv = document.createElement('div');
+                questionDiv.className = 'quiz-question';
+                questionDiv.innerHTML = `
+                    <h3>${index + 1}. ${q.question}</h3>
+                    <div class="quiz-options" data-question="${index}">
+                        ${q.options.map((option, optIndex) => `
+                            <div class="quiz-option" data-option="${optIndex}">
+                                ${option}
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                quizContainer.appendChild(questionDiv);
+            });
+            
+            // Add submit button
+            const submitDiv = document.createElement('div');
+            submitDiv.className = 'quiz-footer';
+            submitDiv.innerHTML = `
+                <button class="btn btn-secondary" id="submit-quiz-btn">Submit Quiz</button>
+            `;
+            quizContainer.appendChild(submitDiv);
+            
+            // Add event listener for options
+            const quizOptions = quizContainer.querySelectorAll('.quiz-option');
+            quizOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Deselect other options in the same question
+                    const questionOptions = this.parentElement.querySelectorAll('.quiz-option');
+                    questionOptions.forEach(opt => opt.classList.remove('selected'));
+                    
+                    // Select this option
+                    this.classList.add('selected');
+                });
+            });
+            
+            // Add event listener for submit button
+            const submitQuizBtn = document.getElementById('submit-quiz-btn');
+            submitQuizBtn.addEventListener('click', function() {
+                evaluateQuiz(topicId);
+            });
+        }
+        
+        function evaluateQuiz(topicId) {
+            const topic = topicsData[topicId];
+            if (!topic || !topic.quiz) return;
+            
+            let score = 0;
+            let totalQuestions = topic.quiz.length;
+            
+            topic.quiz.forEach((q, index) => {
+                const questionOptions = document.querySelector(`.quiz-options[data-question="${index}"]`);
+                const selectedOption = questionOptions.querySelector('.quiz-option.selected');
+                
+                // Mark correct and incorrect answers
+                const options = questionOptions.querySelectorAll('.quiz-option');
+                options.forEach(option => {
+                    const optionIndex = parseInt(option.dataset.option);
+                    
+                    if (optionIndex === q.answer) {
+                        option.classList.add('correct');
+                    }
+                    
+                    if (selectedOption && option === selectedOption && optionIndex !== q.answer) {
+                        option.classList.add('incorrect');
+                    }
+                });
+                
+                // Calculate score
+                if (selectedOption && parseInt(selectedOption.dataset.option) === q.answer) {
+                    score++;
+                }
+            });
+            
+            // Update quiz result
+            quizScore.textContent = `${score}/${totalQuestions}`;
+            
+            const percentage = (score / totalQuestions) * 100;
+            
+            if (percentage === 100) {
+                quizFeedback.textContent = "Excellent work! You've mastered this topic!";
+            } else if (percentage >= 80) {
+                quizFeedback.textContent = "Great job! You have a solid understanding of this topic.";
+            } else if (percentage >= 60) {
+                quizFeedback.textContent = "Good effort! Review the incorrect answers to improve your knowledge.";
+            } else {
+                quizFeedback.textContent = "You might need more study on this topic. Review the material and try again.";
+            }
+            
+            // Store quiz attempt
+            if (!quizAttempts[topicId]) {
+                quizAttempts[topicId] = [];
+            }
+            quizAttempts[topicId].push({
+                score: score,
+                total: totalQuestions,
+                percentage: percentage,
+                date: new Date().toISOString()
+            });
+            
+            // Update progress
+            userProgress[topicId] = Math.max(userProgress[topicId], Math.round(percentage));
+            updateProgressDisplay();
+            
+            // Show quiz result
+            quizResult.style.display = 'block';
+            
+            // Disable options after submission
+            const allOptions = quizContainer.querySelectorAll('.quiz-option');
+            allOptions.forEach(option => {
+                option.style.pointerEvents = 'none';
+            });
+            
+            // Hide submit button
+            const submitQuizBtn = document.getElementById('submit-quiz-btn');
+            submitQuizBtn.style.display = 'none';
+        }
+        
+        function resetQuiz(topicId) {
+            quizResult.style.display = 'none';
+            setupQuiz(topicId);
+        }
+        
+        function updateNotesList() {
+            notesList.innerHTML = '';
+            
+            let hasNotes = false;
+            
+            for (const topicId in userNotes) {
+                if (userNotes[topicId] && userNotes[topicId].trim() !== '') {
+                    hasNotes = true;
+                    const topic = topicsData[topicId];
+                    
+                    const noteItem = document.createElement('div');
+                    noteItem.className = 'content-section';
+                    noteItem.innerHTML = `
+                        <h2>${topic.title}</h2>
+                        <p>${userNotes[topicId].substring(0, 100)}${userNotes[topicId].length > 100 ? '...' : ''}</p>
+                        <div class="notes-actions">
+                            <button class="btn btn-secondary view-note-btn" data-topic="${topicId}">View Notes</button>
+                        </div>
+                    `;
+                    
+                    notesList.appendChild(noteItem);
+                }
+            }
+            
+            if (!hasNotes) {
+                notesList.innerHTML = '<p>You haven\'t created any notes yet. Start learning a topic to take notes!</p>';
+            } else {
+                // Add event listeners for view note buttons
+                const viewNoteBtns = document.querySelectorAll('.view-note-btn');
+                viewNoteBtns.forEach(btn => {
+                    btn.addEventListener('click', function() {
+                        const topicId = this.dataset.topic;
+                        openTopic(topicId);
+                        showTab('notes');
+                    });
+                });
+            }
+        }
+        
+        function updateProgressDisplay() {
+            // Calculate overall progress
+            let totalProgress = 0;
+            let topicCount = 0;
+            
+            for (const topicId in userProgress) {
+                totalProgress += userProgress[topicId];
+                topicCount++;
+            }
+            
+            const overallProgress = topicCount > 0 ? Math.round(totalProgress / topicCount) : 0;
+            
+            // Update progress bars
+            const progressItems = document.querySelectorAll('.progress-item');
+            progressItems.forEach(item => {
+                const titleSpan = item.querySelector('.progress-item-title span:first-child');
+                const valueSpan = item.querySelector('.progress-item-title span:last-child');
+                const progressFill = item.querySelector('.progress-fill');
+                
+                if (titleSpan) {
+                    const title = titleSpan.textContent.trim();
+                    
+                    if (title === 'Overall Progress') {
+                        valueSpan.textContent = `${overallProgress}%`;
+                        progressFill.style.width = `${overallProgress}%`;
+                    } else {
+                        // Find topic id by title
+                        for (const topicId in topicsData) {
+                            if (topicsData[topicId].title === title) {
+                                const progress = userProgress[topicId] || 0;
+                                valueSpan.textContent = `${progress}%`;
+                                progressFill.style.width = `${progress}%`;
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Update quiz performance on progress page
+            const quizPerformance = document.getElementById('quiz-performance');
+            let hasAttempts = false;
+            let quizPerformanceHTML = '';
+            
+            for (const topicId in quizAttempts) {
+                if (quizAttempts[topicId].length > 0) {
+                    hasAttempts = true;
+                    const topic = topicsData[topicId];
+                    const latestAttempt = quizAttempts[topicId][quizAttempts[topicId].length - 1];
+                    
+                    quizPerformanceHTML += `
+                        <div class="content-section">
+                            <h3>${topic.title}</h3>
+                            <p>Latest Score: ${latestAttempt.score}/${latestAttempt.total} (${Math.round(latestAttempt.percentage)}%)</p>
+                            <p>Date: ${new Date(latestAttempt.date).toLocaleString()}</p>
+                        </div>
+                    `;
+                }
+            }
+            
+            if (hasAttempts) {
+                quizPerformance.innerHTML = quizPerformanceHTML;
+            } else {
+                quizPerformance.innerHTML = '<p>You haven\'t taken any quizzes yet.</p>';
+            }
+        }
+        
+        // AI Chat Functions
+        const networkingKnowledge = {
+            // General networking knowledge
+            generalResponses: [
+                "The OSI model consists of seven layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application.",
+                "TCP is a connection-oriented protocol that ensures reliable data delivery, while UDP is connectionless and prioritizes speed over reliability.",
+                "A router operates at Layer 3 (Network layer) of the OSI model and connects different networks together.",
+                "DHCP (Dynamic Host Configuration Protocol) automatically assigns IP addresses to devices on a network.",
+                "DNS (Domain Name System) translates domain names into IP addresses.",
+                "A firewall is a network security device that monitors and filters incoming and outgoing network traffic.",
+                "VPN (Virtual Private Network) creates a secure encrypted connection over a public network.",
+                "IPv4 uses 32-bit addresses, while IPv6 uses 128-bit addresses to solve the address exhaustion problem.",
+                "LAN (Local Area Network) covers a small area like a home or office, while WAN (Wide Area Network) spans a large geographic area.",
+                "A MAC address is a unique identifier assigned to a network interface controller for use at the data link layer."
+            ],
+            
+            // Topic-specific knowledge for more detailed responses
+            topics: {
+                'osi-model': [
+                    "The Physical layer (Layer 1) deals with the physical connection between devices, including cables, switches, and network interface cards.",
+                    "The Data Link layer (Layer 2) provides node-to-node data transfer and error detection/correction. Ethernet operates at this layer.",
+                    "The Network layer (Layer 3) handles routing of data packets between different networks. IP operates at this layer.",
+                    "The Transport layer (Layer 4) ensures end-to-end communication, with TCP and UDP being the main protocols at this layer.",
+                    "The Session layer (Layer 5) establishes, manages, and terminates connections between applications.",
+                    "The Presentation layer (Layer 6) translates, encrypts, and compresses data to ensure compatibility.",
+                    "The Application layer (Layer 7) provides interfaces for applications to access network services, with protocols like HTTP, FTP, and SMTP."
+                ],
+                'tcp-ip': [
+                    "The TCP/IP model has four layers: Network Interface, Internet, Transport, and Application.",
+                    "TCP (Transmission Control Protocol) establishes connections through a three-way handshake: SYN, SYN-ACK, ACK.",
+                    "TCP provides flow control through windowing, allowing the receiver to control how much data the sender transmits.",
+                    "UDP (User Datagram Protocol) is connectionless and has lower overhead, making it suitable for real-time applications like streaming and gaming.",
+                    "IP (Internet Protocol) is responsible for logical addressing and routing packets across networks.",
+                    "IPv4 addresses are written in dotted-decimal notation (e.g., 192.168.1.1) and divided into classes A, B, C, D, and E.",
+                    "IPv6 addresses are written in hexadecimal notation separated by colons (e.g., 2001:0db8:85a3:0000:0000:8a2e:0370:7334)."
+                ],
+                'routing': [
+                    "Interior Gateway Protocols (IGPs) like RIP, OSPF, and EIGRP are used for routing within an autonomous system.",
+                    "Exterior Gateway Protocols (EGPs) like BGP are used for routing between autonomous systems on the Internet.",
+                    "Distance Vector protocols share routing tables with neighbors and use metrics like hop count to determine best paths.",
+                    "Link State protocols build a complete map of the network topology and use algorithms like Dijkstra's to calculate shortest paths.",
+                    "OSPF (Open Shortest Path First) divides networks into areas for better scalability and faster convergence.",
+                    "BGP (Border Gateway Protocol) uses various attributes like AS Path, Local Preference, and MED to make routing decisions.",
+                    "Static routing requires manual configuration, while dynamic routing automatically adapts to network changes."
+                ],
+                'subnetting': [
+                    "Subnetting divides a larger network into smaller, more manageable sub-networks to improve efficiency and security.",
+                    "A subnet mask determines which portion of an IP address identifies the network and which portion identifies the host.",
+                    "CIDR (Classless Inter-Domain Routing) notation like /24 indicates the number of bits used for the network portion of an address.",
+                    "The formula for calculating the number of subnets is 2^n, where n is the number of bits borrowed for subnetting.",
+                    "The formula for calculating the number of hosts per subnet is 2^m - 2, where m is the number of host bits.",
+                    "VLSM (Variable Length Subnet Masks) allows different subnets within the same network to have different subnet masks.",
+                    "IPv6 typically uses a /64 prefix for end-user networks, allowing for an enormous number of hosts per subnet."
+                ],
+                'network-security': [
+                    "Defense in depth involves implementing multiple layers of security controls throughout the network.",
+                    "Firewalls can be packet-filtering, stateful inspection, or application layer, each offering different levels of protection.",
+                    "Intrusion Detection Systems (IDS) monitor for suspicious activity, while Intrusion Prevention Systems (IPS) actively block threats.",
+                    "VPNs use encryption protocols like IPsec or SSL/TLS to create secure tunnels for data transmission.",
+                    "Symmetric encryption uses a single key for both encryption and decryption, while asymmetric encryption uses public and private key pairs.",
+                    "Multi-factor authentication combines something you know (password), something you have (token), and something you are (biometrics).",
+                    "Zero Trust security models operate on the principle of 'never trust, always verify' for all network access."
+                ],
+                'wireless-networks': [
+                    "Wi-Fi is based on the IEEE 802.11 family of standards, with newer versions offering higher speeds and better performance.",
+                    "The 2.4 GHz band has longer range but more interference, while the 5 GHz band has shorter range but less congestion.",
+                    "Wi-Fi security evolved from WEP (highly vulnerable) to WPA, WPA2, and now WPA3 with stronger encryption.",
+                    "Bluetooth is a short-range wireless technology primarily used for personal area networks (PANs).",
+                    "Cellular networks like 4G LTE and 5G provide wide-area coverage for mobile devices.",
+                    "MIMO (Multiple Input, Multiple Output) uses multiple antennas to increase throughput and range in wireless networks.",
+                    "Beamforming focuses wireless signals in the direction of client devices for better reception and efficiency."
+                ]
+            },
+            
+            // Function to generate appropriate responses
+            generateResponse: function(message, topicId = null) {
+                message = message.toLowerCase();
+                
+                let possibleResponses = [...this.generalResponses];
+                
+                // Add topic-specific responses if a topic is active
+                if (topicId && this.topics[topicId]) {
+                    possibleResponses = [...this.topics[topicId], ...possibleResponses];
+                }
+                
+                // Keywords to look for in the message
+                const keywords = {
+                    'osi': ['osi', 'layer', 'model'],
+                    'tcp': ['tcp', 'udp', 'protocol', 'transport'],
+                    'ip': ['ip', 'address', 'ipv4', 'ipv6'],
+                    'routing': ['routing', 'router', 'route', 'ospf', 'bgp', 'rip'],
+                    'subnetting': ['subnet', 'mask', 'cidr', 'vlsm', 'network address'],
+                    'security': ['security', 'firewall', 'encryption', 'threat', 'attack', 'protect'],
+                    'wireless': ['wifi', 'wireless', 'bluetooth', '802.11', 'access point']
+                };
+                
+                // Check for keyword matches
+                for (const category in keywords) {
+                    const categoryKeywords = keywords[category];
+                    const matchesKeyword = categoryKeywords.some(keyword => message.includes(keyword));
+                    
+                    if (matchesKeyword && this.topics[category]) {
+                        // Add more relevant responses from the matched category
+                        possibleResponses = [...this.topics[category], ...possibleResponses];
+                        break;
+                    }
+                }
+                
+                // Check for specific questions
+                if (message.includes('what is') || message.includes('explain') || message.includes('define')) {
+                    if (message.includes('osi') && this.topics['osi-model']) {
+                        return "The OSI (Open Systems Interconnection) model is a conceptual framework used to understand and standardize network communication. It consists of seven layers: Physical, Data Link, Network, Transport, Session, Presentation, and Application. Each layer has specific functions and interfaces with the layers above and below it.";
+                    } else if (message.includes('tcp') && message.includes('udp') && this.topics['tcp-ip']) {
+                        return "TCP (Transmission Control Protocol) and UDP (User Datagram Protocol) are both Transport layer protocols. TCP is connection-oriented, providing reliable, ordered, and error-checked delivery of data. It establishes a connection through a three-way handshake before data transmission. UDP is connectionless, offering faster but less reliable transmission without error recovery. UDP is preferred for real-time applications like video streaming and gaming where speed is more important than perfect reliability.";
+                    } else if (message.includes('subnet') && this.topics['subnetting']) {
+                        return "Subnetting is the practice of dividing a larger network into smaller, more manageable sub-networks (subnets). This improves network performance by reducing broadcast traffic, enhances security through isolation, optimizes IP address usage, and simplifies network management. Subnetting involves borrowing bits from the host portion of an IP address to create additional network bits.";
+                    }
+                }
+                
+                // Generic greeting responses
+                if (message.includes('hello') || message.includes('hi ') || message.includes('hey')) {
+                    return "Hello! I'm your networking AI assistant. How can I help you learn about computer networking today?";
+                }
+                
+                if (message.includes('thank you') || message.includes('thanks')) {
+                    return "You're welcome! If you have any more questions about networking, feel free to ask.";
+                }
+                
+                // If no specific matches, return a random relevant response
+                return possibleResponses[Math.floor(Math.random() * possibleResponses.length)];
+            }
+        };
+        
+        function sendMessage(isTopicSpecific = false) {
+            const input = isTopicSpecific ? topicUserInput : userInput;
+            const chatContainer = isTopicSpecific ? topicChatMessages : chatMessages;
+            
+            const message = input.value.trim();
+            if (message === '') return;
+            
+            // Add user message
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'message user-message';
+            userMessageDiv.textContent = message;
+            chatContainer.appendChild(userMessageDiv);
+            
+            // Clear input
+            input.value = '';
+            
+            // Scroll to bottom
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+            
+            // Generate AI response based on current topic if in topic chat
+            let topicId = null;
+            if (isTopicSpecific && topicContentPage.dataset.currentTopic) {
+                topicId = topicContentPage.dataset.currentTopic;
+            }
+            
+            // Add AI response after a short delay
+            setTimeout(() => {
+                const aiResponse = networkingKnowledge.generateResponse(message, topicId);
+                
+                const aiMessageDiv = document.createElement('div');
+                aiMessageDiv.className = 'message ai-message';
+                aiMessageDiv.textContent = aiResponse;
+                chatContainer.appendChild(aiMessageDiv);
+                
+                // Scroll to bottom
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+            }, 500);
+        }
+        
+        // Event Listeners
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(homePage);
+        });
+        
+        topicsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(topicsPage);
+        });
+        
+        notesLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            updateNotesList();
+            showPage(notesPage);
+        });
+        
+        progressLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            updateProgressDisplay();
+            showPage(progressPage);
+        });
+        
+        document.getElementById('topics-home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(homePage);
+        });
+        
+        document.getElementById('content-home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(homePage);
+        });
+        
+        document.getElementById('content-topics-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(topicsPage);
+        });
+        
+        document.getElementById('notes-home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(homePage);
+        });
+        
+        document.getElementById('progress-home-link').addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(homePage);
+        });
+        
+        exploreTopicsBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            showPage(topicsPage);
+        });
+        
+        exploreBtns.forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const topicCard = this.closest('.topic-card');
+                const topicId = topicCard.dataset.topic;
+                openTopic(topicId);
+            });
+        });
+        
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const tab = this.dataset.tab;
+                showTab(tab);
+            });
+        });
+        
+        retryQuizBtn.addEventListener('click', function() {
+            const currentTopic = topicContentPage.dataset.currentTopic;
+            resetQuiz(currentTopic);
+        });
+        
+        saveNotesBtn.addEventListener('click', function() {
+            const currentTopic = topicContentPage.dataset.currentTopic;
+            userNotes[currentTopic] = notesEditor.value;
+            alert('Notes saved successfully!');
+        });
+        
+        sendBtn.addEventListener('click', function() {
+            sendMessage(false);
+        });
+        
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage(false);
+            }
+        });
+        
+        topicSendBtn.addEventListener('click', function() {
+            sendMessage(true);
+        });
+        
+        topicUserInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage(true);
+            }
+        });
+        
+        // Initialize
+        showPage(homePage);
+        updateProgressDisplay();
+        
+        // Add event listeners to topic cards in all locations
+        document.querySelectorAll('.topic-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (!e.target.closest('.btn')) {
+                    const topicId = this.dataset.topic;
+                    openTopic(topicId);
+                }
+            });
+        });
+    </script>
+</body>
+</html>                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="mt-4">Quiz Performance</h2>
+                <div id="quiz-performance">
+                    <p>You haven't taken any quizzes yet.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2025 NetLearn - Computer Networking Virtual Classroom</p>
+    </footer>
+    
+    <script>
+        // Data Store
+        const topicsData = {
+            'osi-model': {
+                title: 'OSI Model',
+                icon: 'fas fa-layer-group',
+                content: `
+                    <div class="content-section">
+                        <h2>Introduction to the OSI Model</h2>
+                        <p>The Open Systems Interconnection (OSI) model is a conceptual framework used to understand and implement network communication between different systems and devices. Developed by the International Organization for Standardization (ISO) in 1984, the OSI model breaks down network communication into seven distinct layers.</p>
+                        
+                        <p>Each layer in the OSI model has a specific function and interfaces with the layers above and below it. This layered approach helps in standardizing network components, allowing different vendors' products to work together seamlessly.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>The Seven Layers of the OSI Model</h2>
+                        
+                        <h3>Layer 7: Application Layer</h3>
+                        <p>The Application layer is the topmost layer which provides the interface between the application and the network. It includes functions such as identifying communication partners, determining resource availability, and synchronizing communication.</p>
+                        <p><strong>Protocols:</strong> HTTP, HTTPS, FTP, SMTP, DNS, Telnet</p>
+                        
+                        <h3>Layer 6: Presentation Layer</h3>
+                        <p>The Presentation layer is responsible for translating, encrypting, and compressing data. It ensures the data is in a format that the application layer can understand.</p>
+                        <p><strong>Functions:</strong> Data translation, encryption, compression</p>
+                        
+                        <h3>Layer 5: Session Layer</h3>
+                        <p>The Session layer establishes, manages, and terminates connections between applications. It also handles authentication and reconnection if disruption occurs.</p>
+                        <p><strong>Functions:</strong> Session establishment, maintenance, and termination</p>
+                        
+                        <h3>Layer 4: Transport Layer</h3>
+                        <p>The Transport layer provides end-to-end communication between devices, ensuring data is delivered in the correct order and without errors.</p>
+                        <p><strong>Protocols:</strong> TCP, UDP</p>
+                        <p><strong>Functions:</strong> Flow control, error correction, segmentation</p>
+                        
+                        <h3>Layer 3: Network Layer</h3>
+                        <p>The Network layer handles routing of data packets between different networks, addressing, and packet forwarding.</p>
+                        <p><strong>Protocols:</strong> IP, ICMP, OSPF, BGP</p>
+                        <p><strong>Functions:</strong> Logical addressing, routing, path determination</p>
+                        
+                        <h3>Layer 2: Data Link Layer</h3>
+                        <p>The Data Link layer provides node-to-node data transfer, error detection and correction, and flow control. It also handles physical addressing.</p>
+                        <p><strong>Protocols:</strong> Ethernet, PPP, HDLC, Frame Relay</p>
+                        <p><strong>Functions:</strong> Physical addressing, error detection, access control</p>
+                        
+                        <h3>Layer 1: Physical Layer</h3>
+                        <p>The Physical layer deals with the physical connection between devices, transmitting raw bit streams over physical mediums.</p>
+                        <p><strong>Components:</strong> Cables, switches, hubs, network interface cards</p>
+                        <p><strong>Functions:</strong> Bit transmission, physical connections, electrical specifications</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Data Encapsulation in the OSI Model</h2>
+                        <p>When data travels down the OSI model from sender to the physical network, each layer adds its own information to the data through a process called encapsulation:</p>
+                        <ul>
+                            <li><strong>Application Layer:</strong> Data</li>
+                            <li><strong>Presentation Layer:</strong> Data</li>
+                            <li><strong>Session Layer:</strong> Data</li>
+                            <li><strong>Transport Layer:</strong> Segment (TCP) or Datagram (UDP)</li>
+                            <li><strong>Network Layer:</strong> Packet</li>
+                            <li><strong>Data Link Layer:</strong> Frame</li>
+                            <li><strong>Physical Layer:</strong> Bits</li>
+                        </ul>
+                        <p>When data is received, it goes through the opposite process called decapsulation, as it travels up the OSI model to the receiving application.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Practical Applications of the OSI Model</h2>
+                        <p>While the OSI model is primarily conceptual and most networks actually implement the TCP/IP model, understanding the OSI model is crucial for:</p>
+                        <ul>
+                            <li>Troubleshooting network issues - identifying at which layer a problem is occurring</li>
+                            <li>Understanding network communication processes</li>
+                            <li>Learning networking concepts and protocols</li>
+                            <li>Designing network systems and protocols</li>
+                        </ul>
+                    </div>
+                `,
+                quiz: [
+                    {
+                        question: "Which layer of the OSI model is responsible for routing and forwarding?",
+                        options: [
+                            "Transport Layer",
+                            "Network Layer",
+                            "Data Link Layer",
+                            "Session Layer"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "Which of the following protocols operates at the Application layer of the OSI model?",
+                        options: [
+                            "TCP",
+                            "IP",
+                            "Ethernet",
+                            "HTTP"
+                        ],
+                        answer: 3
+                    },
+                    {
+                        question: "Data encapsulation occurs when data travels ____ the OSI model.",
+                        options: [
+                            "Up",
+                            "Down",
+                            "Across",
+                            "Outside"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "Which layer ensures data is delivered error-free and in the correct sequence?",
+                        options: [
+                            "Transport Layer",
+                            "Network Layer",
+                            "Data Link Layer",
+                            "Physical Layer"
+                        ],
+                        answer: 0
+                    },
+                    {
+                        question: "How many layers does the OSI model have?",
+                        options: [
+                            "4",
+                            "5",
+                            "6",
+                            "7"
+                        ],
+                        answer: 3
+                    }
+                ]
+            },
+            'tcp-ip': {
+                title: 'TCP/IP Protocol',
+                icon: 'fas fa-exchange-alt',
+                content: `
+                    <div class="content-section">
+                        <h2>Introduction to TCP/IP</h2>
+                        <p>The Transmission Control Protocol/Internet Protocol (TCP/IP) is the fundamental communication protocol of the Internet and forms the basis for modern network communications. Unlike the theoretical OSI model, TCP/IP is an implemented protocol suite that powers the global Internet and most local networks.</p>
+                        
+                        <p>Developed in the 1970s by DARPA (Defense Advanced Research Projects Agency), TCP/IP was designed to be robust, automatically recovering from any node or phone line failure. This design principle has helped it scale from a small research network to the global Internet we know today.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>The TCP/IP Model Layers</h2>
+                        
+                        <p>Unlike the OSI model with seven layers, the TCP/IP model consists of four layers:</p>
+                        
+                        <h3>1. Application Layer</h3>
+                        <p>This layer combines the functionalities of the OSI model's Application, Presentation, and Session layers. It handles high-level protocols, issues of representation, encoding, and dialog control.</p>
+                        <p><strong>Protocols:</strong> HTTP, HTTPS, FTP, SMTP, DNS, Telnet, SSH, SNMP</p>
+                        
+                        <h3>2. Transport Layer</h3>
+                        <p>The Transport layer provides end-to-end communication services for applications. It corresponds to the Transport layer in the OSI model.</p>
+                        
+                        <h4>TCP (Transmission Control Protocol)</h4>
+                        <p>A connection-oriented protocol that establishes a virtual connection before transmitting data, ensuring reliability through:</p>
+                        <ul>
+                            <li>Error checking</li>
+                            <li>Ordered delivery</li>
+                            <li>Flow control</li>
+                            <li>Congestion control</li>
+                            <li>Retransmission of lost packets</li>
+                        </ul>
+                        
+                        <h4>UDP (User Datagram Protocol)</h4>
+                        <p>A connectionless protocol that does not establish a connection before sending data, offering:</p>
+                        <ul>
+                            <li>Lower overhead and latency</li>
+                            <li>No error checking or recovery</li>
+                            <li>No guarantee of ordered delivery</li>
+                            <li>Suitable for real-time applications like video streaming and gaming</li>
+                        </ul>
+                        
+                        <h3>3. Internet Layer</h3>
+                        <p>Equivalent to the Network layer in OSI, this layer handles packet routing through different networks.</p>
+                        <p><strong>Protocols:</strong></p>
+                        <ul>
+                            <li><strong>IP (Internet Protocol):</strong> The primary protocol, responsible for addressing and routing packets</li>
+                            <li><strong>IPv4:</strong> Uses 32-bit addresses (e.g., 192.168.1.1)</li>
+                            <li><strong>IPv6:</strong> Uses 128-bit addresses to solve the IPv4 address exhaustion problem</li>
+                            <li><strong>ICMP:</strong> Error reporting and diagnostics (used by ping and traceroute)</li>
+                            <li><strong>IGMP:</strong> Internet Group Management Protocol for multicast</li>
+                        </ul>
+                        
+                        <h3>4. Network Interface Layer</h3>
+                        <p>This layer combines the OSI model's Physical and Data Link layers, handling the physical interface between a data transmission device and a transmission medium.</p>
+                        <p><strong>Technologies:</strong> Ethernet, Wi-Fi, PPP, Token Ring</p>
+                        <p><strong>Functions:</strong> Physical addressing (MAC addresses), media access control, hardware addressing</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>TCP/IP Communication Process</h2>
+                        
+                        <h3>Data Encapsulation</h3>
+                        <p>When data is sent over a TCP/IP network, it goes through several transformations:</p>
+                        <ol>
+                            <li><strong>Data:</strong> Generated by the Application layer</li>
+                            <li><strong>Segment:</strong> The Transport layer (TCP/UDP) adds headers with port numbers and sequence information</li>
+                            <li><strong>Packet/Datagram:</strong> The Internet layer (IP) adds source and destination IP addresses</li>
+                            <li><strong>Frame:</strong> The Network Interface layer adds MAC addresses and prepares for physical transmission</li>
+                        </ol>
+                        
+                        <h3>Three-Way Handshake (TCP Connection Establishment)</h3>
+                        <p>Before TCP transmits data, it establishes a connection through a three-way handshake:</p>
+                        <ol>
+                            <li><strong>SYN:</strong> Client sends a SYN (synchronize) packet with an initial sequence number</li>
+                            <li><strong>SYN-ACK:</strong> Server responds with a SYN-ACK packet, acknowledging the client's sequence number and providing its own</li>
+                            <li><strong>ACK:</strong> Client sends an ACK packet, acknowledging the server's sequence number</li>
+                        </ol>
+                        <p>This establishes parameters like sequence numbers, window sizes, and maximum segment size for both directions of the connection.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>TCP/IP vs OSI Model</h2>
+                        <p>While the OSI model is more of a theoretical framework, TCP/IP is the practical implementation that powers the Internet. Here's how they compare:</p>
+                        <ul>
+                            <li>TCP/IP has 4 layers compared to OSI's 7 layers</li>
+                            <li>TCP/IP combines several OSI layers (Application, Presentation, and Session) into a single Application layer</li>
+                            <li>TCP/IP combines OSI's Physical and Data Link layers into the Network Interface layer</li>
+                            <li>TCP/IP was developed first, while OSI was developed as a more standardized but theoretical model</li>
+                            <li>TCP/IP is universally implemented, while the complete OSI model is rarely fully implemented</li>
+                        </ul>
+                    </div>
+                `,
+                quiz: [
+                    {
+                        question: "Which layer of the TCP/IP model is responsible for routing packets between networks?",
+                        options: [
+                            "Application Layer",
+                            "Transport Layer",
+                            "Internet Layer",
+                            "Network Interface Layer"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "Which protocol is connection-oriented and provides reliable data delivery?",
+                        options: [
+                            "IP",
+                            "UDP",
+                            "ICMP",
+                            "TCP"
+                        ],
+                        answer: 3
+                    },
+                    {
+                        question: "How many layers does the TCP/IP model have?",
+                        options: [
+                            "3",
+                            "4",
+                            "5",
+                            "7"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "Which of the following is NOT a characteristic of UDP?",
+                        options: [
+                            "Connectionless",
+                            "Low overhead",
+                            "Guaranteed delivery",
+                            "No flow control"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "The three-way handshake is used to establish a connection in which protocol?",
+                        options: [
+                            "IP",
+                            "UDP",
+                            "TCP",
+                            "HTTP"
+                        ],
+                        answer: 2
+                    }
+                ]
+            },
+            'routing': {
+                title: 'Routing Protocols',
+                icon: 'fas fa-route',
+                content: `
+                    <div class="content-section">
+                        <h2>Introduction to Routing Protocols</h2>
+                        <p>Routing protocols are sets of rules that govern how routers communicate with each other to share information about network topology. They enable routers to dynamically discover, select, and maintain optimal paths between networks, allowing data packets to traverse complex internetworks efficiently.</p>
+                        
+                        <p>Without routing protocols, the modern Internet would not be possible, as manual configuration of routes in our vast interconnected networks would be impossible to maintain.</p>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Types of Routing Protocols</h2>
+                        
+                        <h3>1. Interior Gateway Protocols (IGPs)</h3>
+                        <p>Used within an autonomous system (AS) - a network under a single administrative domain, like a company's internal network.</p>
+                        
+                        <h4>Distance Vector Protocols</h4>
+                        <ul>
+                            <li><strong>RIP (Routing Information Protocol):</strong> Simple protocol that uses hop count as metric; limited to 15 hops</li>
+                            <li><strong>EIGRP (Enhanced Interior Gateway Routing Protocol):</strong> Cisco proprietary; uses bandwidth, delay, reliability, and load as metrics</li>
+                        </ul>
+                        
+                        <h4>Link State Protocols</h4>
+                        <ul>
+                            <li><strong>OSPF (Open Shortest Path First):</strong> Open standard; builds a complete topology map of the network</li>
+                            <li><strong>IS-IS (Intermediate System to Intermediate System):</strong> Similar to OSPF; often used by large service providers</li>
+                        </ul>
+                        
+                        <h3>2. Exterior Gateway Protocols (EGPs)</h3>
+                        <p>Used between autonomous systems, primarily on the Internet.</p>
+                        <ul>
+                            <li><strong>BGP (Border Gateway Protocol):</strong> The core routing protocol of the Internet; focuses on policy-based routing rather than fastest paths</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Distance Vector vs. Link State Protocols</h2>
+                        
+                        <h3>Distance Vector Protocols</h3>
+                        <p><strong>How they work:</strong> Routers share their entire routing table with direct neighbors at regular intervals.</p>
+                        <p><strong>Advantages:</strong></p>
+                        <ul>
+                            <li>Simple to configure and implement</li>
+                            <li>Less CPU and memory intensive</li>
+                        </ul>
+                        <p><strong>Disadvantages:</strong></p>
+                        <ul>
+                            <li>Slow convergence - takes time to propagate topology changes</li>
+                            <li>Vulnerable to routing loops</li>
+                            <li>Count-to-infinity problem</li>
+                            <li>Limited scalability</li>
+                        </ul>
+                        
+                        <h3>Link State Protocols</h3>
+                        <p><strong>How they work:</strong> Routers build a complete map of the network and independently calculate best paths.</p>
+                        <p><strong>Advantages:</strong></p>
+                        <ul>
+                            <li>Fast convergence</li>
+                            <li>More efficient bandwidth usage (updates only when changes occur)</li>
+                            <li>Better scalability for large networks</li>
+                            <li>Loop-free topology</li>
+                        </ul>
+                        <p><strong>Disadvantages:</strong></p>
+                        <ul>
+                            <li>More complex to configure and understand</li>
+                            <li>Higher CPU and memory requirements</li>
+                            <li>Intensive processor usage during initial convergence</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>OSPF (Open Shortest Path First)</h2>
+                        <p>OSPF is one of the most widely used interior gateway protocols, using the Dijkstra's algorithm to calculate the shortest path.</p>
+                        
+                        <h3>Key Features of OSPF</h3>
+                        <ul>
+                            <li><strong>Areas:</strong> Divides the network into hierarchical areas to improve scalability</li>
+                            <li><strong>Router Types:</strong> Internal, Area Border, Backbone, and Autonomous System Boundary</li>
+                            <li><strong>Fast Convergence:</strong> Quickly adapts to network changes</li>
+                            <li><strong>Support for VLSM and CIDR:</strong> Allows efficient IP address usage</li>
+                            <li><strong>Authentication:</strong> Supports MD5 authentication for security</li>
+                        </ul>
+                        
+                        <h3>OSPF Operation</h3>
+                        <ol>
+                            <li><strong>Neighbor Discovery:</strong> Routers discover neighbors using Hello packets</li>
+                            <li><strong>Database Synchronization:</strong> Routers exchange link-state advertisements (LSAs)</li>
+                            <li><strong>Shortest Path Calculation:</strong> Each router independently runs the SPF algorithm</li>
+                            <li><strong>Routing Table Update:</strong> Best routes are inserted into the routing table</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>BGP (Border Gateway Protocol)</h2>
+                        <p>BGP is the protocol that makes the global Internet possible by connecting different autonomous systems.</p>
+                        
+                        <h3>Key Characteristics of BGP</h3>
+                        <ul>
+                            <li><strong>Path Vector Protocol:</strong> Shares complete path information to avoid loops</li>
+                            <li><strong>Policy-Based:</strong> Route selection based on policies, not just metrics</li>
+                            <li><strong>Incremental Updates:</strong> Only sends changes, not entire tables</li>
+                            <li><strong>TCP-Based:</strong> Uses TCP for reliable transmission</li>
+                            <li><strong>Attributes:</strong> Multiple attributes to influence path selection (AS Path, Local Preference, MED, etc.)</li>
+                        </ul>
+                        
+                        <h3>BGP Route Selection Process</h3>
+                        <p>BGP uses a complex path selection algorithm that considers multiple factors in this order:</p>
+                        <ol>
+                            <li>Highest Local Preference</li>
+                            <li>Shortest AS Path</li>
+                            <li>Lowest Origin Type</li>
+                            <li>Lowest MED (Multi-Exit Discriminator)</li>
+                            <li>eBGP over iBGP</li>
+                            <li>Lowest IGP metric to the BGP next hop</li>
+                            <li>Oldest route (for stability)</li>
+                            <li>Lowest Router ID</li>
+                        </ol>
+                    </div>
+                `,
+                quiz: [
+                    {
+                        question: "Which of the following is an interior gateway protocol?",
+                        options: [
+                            "BGP",
+                            "OSPF",
+                            "EGP",
+                            "IGRP-2"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "What type of routing protocol is RIP classified as?",
+                        options: [
+                            "Link State",
+                            "Path Vector",
+                            "Distance Vector",
+                            "Hybrid"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "What is the primary routing protocol used between autonomous systems on the Internet?",
+                        options: [
+                            "OSPF",
+                            "BGP",
+                            "RIP",
+                            "EIGRP"
+                        ],
+                        answer: 1
+                    },
+                    {
+                        question: "Which of the following is an advantage of link state protocols over distance vector protocols?",
+                        options: [
+                            "Simpler configuration",
+                            "Lower CPU requirements",
+                            "Faster convergence",
+                            "Less bandwidth usage during initial setup"
+                        ],
+                        answer: 2
+                    },
+                    {
+                        question: "OSPF uses which algorithm to calculate the shortest path?",
+                        options: [
+                            "Bellman-Ford",
+                            "Dijkstra's",
+                            "Floyd-Warshall",
+                            "Kruskal's"
+                        ],
+                        answer: 1
+                    }
+                ]
+            },
+            'subnetting': {
+                title: 'Subnetting',
+                icon: 'fas fa-sitemap',
+                content: `
+                    <div class="content-section">
+                        <h2>Introduction to Subnetting</h2>
+                        <p>Subnetting is the practice of dividing a larger network into smaller, more manageable sub-networks (subnets). This technique is crucial for optimizing network performance, improving security, and making efficient use of available IP addresses.</p>
+                        
+                        <p>By creating multiple smaller networks instead of one large network, organizations can:</p>
+                        <ul>
+                            <li>Reduce network congestion and broadcast traffic</li>
+                            <li>Enhance network security through isolation</li>
+                            <li>Simplify network management and troubleshooting</li>
+                            <li>Optimize routing efficiency</li>
+                            <li>Conserve IP address space</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>IP Addressing Fundamentals</h2>
+                        
+                        <h3>IPv4 Structure</h3>
+                        <p>An IPv4 address is a 32-bit address divided into four octets (8 bits each), written in dotted-decimal notation (e.g., 192.168.1.1).</p>
+                        
+                        <h3>Address Classes</h3>
+                        <p>Traditionally, IPv4 addresses were divided into five classes:</p>
+                        <ul>
+                            <li><strong>Class A:</strong> 1.0.0.0 to 126.255.255.255 (Default mask: 255.0.0.0 or /8)</li>
+                            <li><strong>Class B:</strong> 128.0.0.0 to 191.255.255.255 (Default mask: 255.255.0.0 or /16)</li>
+                            <li><strong>Class C:</strong> 192.0.0.0 to 223.255.255.255 (Default mask: 255.255.255.0 or /24)</li>
+                            <li><strong>Class D:</strong> 224.0.0.0 to 239.255.255.255 (Multicast)</li>
+                            <li><strong>Class E:</strong> 240.0.0.0 to 255.255.255.255 (Experimental)</li>
+                        </ul>
+                        <p>Modern networks use Classless Inter-Domain Routing (CIDR) instead of these traditional classes.</p>
+                        
+                        <h3>Subnet Masks</h3>
+                        <p>A subnet mask is a 32-bit value that identifies which portion of an IP address refers to the network and which portion refers to the host.</p>
+                        <p>For example, in the subnet mask 255.255.255.0 or /24:</p>
+                        <ul>
+                            <li>255.255.255 (the first 24 bits) identifies the network portion</li>
+                            <li>0 (the last 8 bits) identifies the host portion</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="content-section">
+                        <h2>Subnetting Calculations</h2>
+                        
+                        <h3>Basic Subnetting Steps</h3>
+                        <ol>
+                            <li>Determine how many subnets you need</li>
+                            <li>Determine how many hosts per subnet you need</li>
+                            <li>Calculate how many bits to borrow for subnetting</li>
+                            <li>Calculate the new subnet mask</li>
+                            <li>Calculate the subnet addresses</li>
+                            <li>Calculate the host range for each subnet</li>
+                        </ol>
+                        
+                        <h3>Formula and Key Points</h3>
+                        <ul>
+                            <li><strong>Number of subnets = 2<sup>n</sup></strong> (where n is the number of bits borrowed)</li>
+                            <li><strong>Number of hosts per subnet = 2<sup>m</sup> - 2</strong> (where m is the number of host bits, and we subtract 2 for the network address and broadcast address)</li>
+                            <li>The first address in a subnet is the <strong>network address</strong></li>
+                            <li>The last address in a subnet is the <strong>broadcast address</strong></li>
+                            <li>Valid host addresses are between the network address and broadcast address</li>
+                        </ul>
+                        
+                        <h3>Example: Subnetting a Class C Network</h3>
+                        <p>Let's subnet 192.168.1.0/24 into 4 equal subnets:</p>
+                        
+                        <p><strong>Step 1:</strong> To create 4 subnets, we need to borrow 2 bits (2<sup>2</sup> = 4).</p>
+                        <p><strong>Step 2:</strong> The new subnet mask becomes /26 (24 + 2), or 255.255.255.192.</p>
+                        <p><strong>Step 3:</strong> The 4 subnets are:</p>
+                        <ul>
+                            <li><strong>Subnet 1:</strong> 192.168.1.0/26 (Host range: 192.168.1.1 - 192.168.1.62, Broadcast: 192.168.1.63)</li>
+                            <li><strong>Subnet 2:</strong> 192.168.1.64/26 <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NetLearn - Computer Networking Virtual Classroom</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #475569;
+            --light: #f8fafc;
+            --dark: #1e293b;
+            --success: #22c55e;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .logo i {
+            font-size: 1.8rem;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .nav-links a.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 3px;
+        }
+        
+        .main-container {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+            min-height: calc(100vh - 200px);
+        }
+        
+        .hero {
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            padding: 3rem 2rem;
+            color: white;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: white;
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-3px);
+        }
+        
+        .btn-secondary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .topic-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .topic-img {
+            height: 150px;
+            background-color: #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        .topic-img i {
+            font-size: 3rem;
+        }
+        
+        .topic-content {
+            padding: 1.5rem;
+        }
+        
+        .topic-content h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .topic-content p {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .two-columns {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+        
+        .chat-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            flex-direction: column;
+            height: 600px;
+        }
+        
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            background-color: #f8fafc;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+        }
+        
+        .message {
+            padding: 0.8rem 1.2rem;
+            border-radius: 10px;
+            max-width: 80%;
+            word-break: break-word;
+        }
+        
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .ai-message {
+            align-self: flex-start;
+            background-color: #e2e8f0;
+            color: var(--dark);
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .right-sidebar {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            padding: 1.5rem;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .sidebar-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .progress-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .progress-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+        }
+        
+        .progress-item-title {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background-color: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background-color: var(--primary);
+            border-radius: 10px;
+        }
+        
+        footer {
+            background-color: white;
+            padding: 2rem;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .content-container {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .breadcrumbs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+        
+        .breadcrumbs a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+        
+        .breadcrumbs a:hover {
+            color: var(--primary);
+            text-decoration: underline;
+        }
+        
+        .content-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+        
+        .content-section {
+            margin-bottom: 2rem;
+        }
+        
+        .content-section h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+        
+        .content-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .tab-container {
+            margin-top: 2rem;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1.5rem;
+        }
+        
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            background: none;
+            font-weight: 600;
+            color: var(--secondary);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .tab-btn.active {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .quiz-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quiz-question {
+            margin-bottom: 2rem;
+        }
+        
+        .quiz-question h3 {
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        
+        .quiz-option {
+            padding: 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        
+        .quiz-option:hover {
+            background-color: #f1f5f9;
+        }
+        
+        .quiz-option.selected {
+            border-color: var(--primary);
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+        
+        .quiz-option.correct {
+            border-color: var(--success);
+            background-color: rgba(34, 197, 94, 0.1);
+        }
+        
+        .quiz-option.incorrect {
+            border-color: var(--danger);
+            background-color: rgba(239, 68, 68, 0.1);
+        }
+        
+        .quiz-footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 2rem;
+        }
+        
+        .notes-container {
+            height: 400px;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .notes-editor {
+            width: 100%;
+            height: 100%;
+            border: none;
+            resize: none;
+            font-size: 1rem;
+            line-height: 1.6;
+            outline: none;
+        }
+        
+        .notes-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+        
+        .quiz-result {
+            text-align: center;
+            padding: 2rem;
+            background-color: #f1f5f9;
+            border-radius: 10px;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .quiz-score {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .quiz-feedback {
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .two-columns {
+                grid-template-columns: 1fr;
+            }
+            
+            .navbar {
+                flex-direction: column;
+                padding: 1rem;
+            }
+            
+            .nav-links {
+                margin-top: 1rem;
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .main-container {
+                padding: 0 1rem;
+                margin: 1rem auto;
+            }
+            
+            .chat-container {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-network-wired"></i>
+                <span>NetLearn</span>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active" id="home-link">Home</a>
+                <a href="#" id="topics-link">Topics</a>
+                <a href="#" id="notes-link">My Notes</a>
+                <a href="#" id="progress-link">Progress</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="main-container">
+        <div id="home-page">
+            <div class="hero">
+                <h1>Welcome to NetLearn</h1>
+                <p>Your interactive learning platform for Computer Networking with AI-powered tutors</p>
+                <a href="#" class="btn btn-primary" id="explore-topics-btn">Explore Topics</a>
+            </div>
+            
+            <h2>Popular Topics</h2>
+            <div class="topics-grid">
+                <div class="topic-card" data-topic="osi-model">
+                    <div class="topic-img">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>OSI Model</h3>
+                        <p>Learn about the 7 layers that standardize network communications</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="tcp-ip">
+                    <div class="topic-img">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>TCP/IP Protocol</h3>
+                        <p>Understand the foundation of internet communications</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="routing">
+                    <div class="topic-img">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Routing Protocols</h3>
+                        <p>Discover how data finds its way through networks</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="subnetting">
+                    <div class="topic-img">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Subnetting</h3>
+                        <p>Master the art of dividing networks into subnets</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="network-security">
+                    <div class="topic-img">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Network Security</h3>
+                        <p>Learn how to protect networks from threats</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="wireless-networks">
+                    <div class="topic-img">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Wireless Networks</h3>
+                        <p>Explore wireless communication technologies</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="two-columns">
+                <div class="chat-container">
+                    <h2>NetLearn AI Assistant</h2>
+                    <p>Ask anything about networking and get instant answers</p>
+                    <div class="chat-messages" id="chat-messages">
+                        <div class="message ai-message">
+                            Hello! I'm your NetLearn AI assistant. How can I help you with networking today?
+                        </div>
+                    </div>
+                    <div class="chat-input">
+                        <input type="text" id="user-input" placeholder="Ask something about networking...">
+                        <button class="btn btn-secondary" id="send-btn">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="right-sidebar">
+                    <h3 class="sidebar-title">Your Progress</h3>
+                    <div class="progress-stats">
+                        <div class="progress-item">
+                            <div class="progress-item-title">
+                                <span>OSI Model</span>
+                                <span>0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-item-title">
+                                <span>TCP/IP Protocol</span>
+                                <span>0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-item-title">
+                                <span>Routing Protocols</span>
+                                <span>0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="progress-item">
+                            <div class="progress-item-title">
+                                <span>Overall Progress</span>
+                                <span>0%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 0%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="topics-page" style="display: none;">
+            <div class="breadcrumbs">
+                <a href="#" id="topics-home-link">Home</a>
+                <span>/</span>
+                <span>Topics</span>
+            </div>
+            
+            <h1 class="content-title">All Topics</h1>
+            
+            <div class="topics-grid">
+                <div class="topic-card" data-topic="osi-model">
+                    <div class="topic-img">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>OSI Model</h3>
+                        <p>Learn about the 7 layers that standardize network communications</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="tcp-ip">
+                    <div class="topic-img">
+                        <i class="fas fa-exchange-alt"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>TCP/IP Protocol</h3>
+                        <p>Understand the foundation of internet communications</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="routing">
+                    <div class="topic-img">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Routing Protocols</h3>
+                        <p>Discover how data finds its way through networks</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="subnetting">
+                    <div class="topic-img">
+                        <i class="fas fa-sitemap"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Subnetting</h3>
+                        <p>Master the art of dividing networks into subnets</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="network-security">
+                    <div class="topic-img">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Network Security</h3>
+                        <p>Learn how to protect networks from threats</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="wireless-networks">
+                    <div class="topic-img">
+                        <i class="fas fa-wifi"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Wireless Networks</h3>
+                        <p>Explore wireless communication technologies</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="cloud-networking">
+                    <div class="topic-img">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Cloud Networking</h3>
+                        <p>Learn about networking in cloud environments</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card" data-topic="network-virtualization">
+                    <div class="topic-img">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Network Virtualization</h3>
+                        <p>Understand SDN and virtual networking concepts</p>
+                        <a href="#" class="btn btn-secondary topic-btn">Start Learning</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="topic-content-page" style="display: none;">
+            <div class="breadcrumbs">
+                <a href="#" id="content-home-link">Home</a>
+                <span>/</span>
+                <a href="#" id="content-topics-link">Topics</a>
+                <span>/</span>
+                <span id="current-topic-name">Topic Name</span>
+            </div>
+            
+            <div class="content-container">
+                <h1 class="content-title" id="topic-title">Topic Title</h1>
+                
+                <div class="tab-container">
+                    <div class="tab-buttons">
+                        <button class="tab-btn active" data-tab="learn">Learn</button>
+                        <button class="tab-btn" data-tab="quiz">Quiz</button>
+                        <button class="tab-btn" data-tab="notes">Notes</button>
+                        <button class="tab-btn" data-tab="ask">Ask AI</button>
+                    </div>
+                    
+                    <div class="tab-content active" id="learn-tab">
+                        <div id="topic-content">
+                            <!-- Dynamic content will be loaded here -->
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="quiz-tab">
+                        <div class="quiz-container" id="quiz-container">
+                            <!-- Quiz content will be loaded here -->
+                        </div>
+                        
+                        <div class="quiz-result" id="quiz-result">
+                            <h2>Quiz Results</h2>
+                            <div class="quiz-score" id="quiz-score">0/0</div>
+                            <div class="quiz-feedback" id="quiz-feedback"></div>
+                            <button class="btn btn-secondary" id="retry-quiz-btn">Retry Quiz</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="notes-tab">
+                        <h2>My Notes - <span id="notes-topic-title">Topic</span></h2>
+                        <div class="notes-container">
+                            <textarea class="notes-editor" id="notes-editor" placeholder="Type your notes here..."></textarea>
+                        </div>
+                        <div class="notes-actions">
+                            <button class="btn btn-secondary" id="save-notes-btn">Save Notes</button>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="ask-tab">
+                        <div class="chat-container">
+                            <h2>Ask About <span id="chat-topic-title">Topic</span></h2>
+                            <p>Ask specific questions about this topic to our AI tutor</p>
+                            <div class="chat-messages" id="topic-chat-messages">
+                                <div class="message ai-message">
+                                    I'm your AI tutor for <span class="topic-specific-name">this topic</span>. What questions do you have?
+                                </div>
+                            </div>
+                            <div class="chat-input">
+                                <input type="text" id="topic-user-input" placeholder="Ask something about this topic...">
+                                <button class="btn btn-secondary" id="topic-send-btn">
+                                    <i class="fas fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="notes-page" style="display: none;">
+            <div class="breadcrumbs">
+                <a href="#" id="notes-home-link">Home</a>
+                <span>/</span>
+                <span>My Notes</span>
+            </div>
+            
+            <h1 class="content-title">My Notes</h1>
+            
+            <div class="content-container">
+                <div id="notes-list">
+                    <!-- Notes list will be dynamically generated -->
+                    <p>You haven't created any notes yet. Start learning a topic to take notes!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div id="progress-page" style="display: none;">
+            <div class="breadcrumbs">
+                <a href="#" id="progress-home-link">Home</a>
+                <span>/</span>
+                <span>My Progress</span>
+            </div>
+            
+            <h1 class="content-title">My Progress</h1>
+            
+            <div class="content-container">
+                <h2>Topic Completion</h2>
+                <div class="progress-stats">
+                    <div class="progress-item">
+                        <div class="progress-item-title">
+                            <span>OSI Model</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-item-title">
+                            <span>Routing Protocols</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-item-title">
+                            <span>Subnetting</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-item-title">
+                            <span>Network Security</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-item-title">
+                            <span>Wireless Networks</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-item-title">
+                            <span>Overall Progress</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-item-title">
+                            <span>TCP/IP Protocol</span>
+                            <span>0%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div
